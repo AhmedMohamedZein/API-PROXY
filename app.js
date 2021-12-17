@@ -11,18 +11,15 @@ const path = require('path');
 const proxy = express(); //app 
 
 require('dotenv').config({path: __dirname + '/.gitignore/.env'}); //config, searches for the values inside the .env file
-const PORT = process.env.PORT ;
+const PORT = process.env.PORT || 5000 ;
 // Some helpful middlware.
 //this middlware connect the server "proxy" to the html page to load poth css and js file for the page
 proxy.use(express.static(__dirname)); 
 proxy.use ( cors() );
 //proxy.use ( JSON.parse() ); // convert the up coming response to Json.
 
-proxy.get ('/' , ( req, res)=> {
-    res.sendFile(path.join(__dirname + '/main.html'));
-});
-
+proxy.use ('/weather' , require('./Routes/weather') );
 
 proxy.listen (PORT , ()=> {
-    console.log ("Someone is connected to the endpoint !"); 
+    console.log (`Someone is connected to the websit ${PORT} !`); 
 });
