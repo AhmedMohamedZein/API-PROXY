@@ -16,7 +16,7 @@ const PORT = process.env.PORT || 5000 ;
 //this middlware connect the server "proxy" to the html page to load poth css and js file for the page
 proxy.use(express.static(__dirname)); 
 proxy.use ( cors() );
-//proxy.use ( JSON.parse() ); // convert the up coming response to Json.
+
 
 proxy.use ('/weather' , require('./Routes/weather') );
 
