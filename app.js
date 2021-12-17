@@ -7,8 +7,11 @@
 const express = require("express");
 const cors = require ("cors");
 const path = require('path');
+
 const proxy = express(); //app 
 
+require('dotenv').config({path: __dirname + '/.gitignore/.env'}); //config, searches for the values inside the .env file
+const PORT = process.env.PORT ;
 // Some helpful middlware.
 //this middlware connect the server "proxy" to the html page to load poth css and js file for the page
 proxy.use(express.static(__dirname)); 
@@ -20,6 +23,6 @@ proxy.get ('/' , ( req, res)=> {
 });
 
 
-proxy.listen (3000 , ()=> {
+proxy.listen (PORT , ()=> {
     console.log ("Someone is connected to the endpoint !"); 
 });
